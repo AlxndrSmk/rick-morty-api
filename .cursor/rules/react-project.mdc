@@ -1,0 +1,20 @@
+---
+description: Core React/UI standards — components, Tailwind, errors, performance
+alwaysApply: true
+---
+
+# React project standards
+
+1. **Components** — Use function components and React hooks only. No class components. Put data fetching and derived state in custom hooks; keep presentational components thin.
+
+2. **Styling** — Use Tailwind utility classes via `className`. Do not add feature-level CSS files; the global stylesheet may only contain Tailwind layers (`@tailwind`).
+
+3. **Async errors** — Handle network/async failures explicitly (e.g. `try/catch` or equivalent) and show a clear message plus a way to retry. Do not rely on error boundaries alone for fetch failures—boundaries catch render errors, not rejected promises.
+
+4. **Error boundaries** — Wrap major UI trees that can throw (e.g. route or feature root) with the project’s error-boundary pattern so unexpected render errors do not blank the whole app.
+
+5. **Loading UX** — While data is loading, show a skeleton or spinner. Avoid empty regions with no feedback.
+
+6. **Performance** — Prefer `loading="lazy"` (and `decoding="async"` where appropriate) on non-critical images. Debounce text-driven API calls (e.g. search). Cancel or ignore stale requests with `AbortController` when inputs change quickly.
+
+7. **Scope** — Prefer small, focused files and components; split when a file grows hard to scan (~150 lines is a soft ceiling). Name hooks and components after what they do (`useCharacterPage`, `CharacterCard`).
